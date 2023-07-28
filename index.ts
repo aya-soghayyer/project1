@@ -94,8 +94,7 @@ app.use(express.json())
 
 
 
-    // app.get('/students?mark=mark&college=colName', (req, res)=>{
-    // })
+   
 
 app.listen(port, ()=>{
     console.log('server is running on'+ port);
