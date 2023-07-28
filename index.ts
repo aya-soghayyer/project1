@@ -14,7 +14,13 @@ app.use(express.json())
     })
 
     //get
-    app.get('/book/id', (req, res)=>{
+    app.get('/book/:id', (req, res)=>{
+        const bookId = parseInt(req.params.id); 
+        for(let i = 0 ; i< data.length; i++){
+            if(data[i].id === bookId  ){
+                res.send(data[i]);
+            }
+        }
     res.send(data);
     })
 
@@ -36,12 +42,12 @@ app.use(express.json())
 
     //get
     app.get('/book', (req,res)=>{
-        if (!req.query?.publicationYear){
+        if (!req.query?.pYear){
             res.send("Error: please send book id in query params!")
             return ; 
         }
         else {
-            const bookpYear = parseInt(req.query.publicationYear.toString()); 
+            const bookpYear = parseInt(req.query.pYear.toString()); 
             for(let i = 0 ; i< data.length; i++){
                 if(data[i].publicationYear === bookpYear  ){
                     res.send(data[i]);
@@ -94,7 +100,8 @@ app.use(express.json())
 
 
 
-   
+    // app.get('/students?mark=mark&college=colName', (req, res)=>{
+    // })
 
 app.listen(port, ()=>{
     console.log('server is running on'+ port);
